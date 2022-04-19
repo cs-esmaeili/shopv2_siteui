@@ -4,13 +4,22 @@ import config from '../config.json'
 import Footer from './../views/layouts/Footer';
 import Header from './../views/layouts/Header';
 import Home from './pages/Home';
+import LogIn from './pages/LogIn';
+import Register from './pages/Register';
+
 
 const Main = () => {
-
+    const [update, setUpdate] = useState(false);
     return (
         <>
-            <Header />
+            <Header update={() => setUpdate(!update)} />
             <Switch>
+                <Route path={[config.web_url + 'register']}>
+                    <Register update={() => setUpdate(!update)} />
+                </Route>
+                <Route path={[config.web_url + 'logIn']}>
+                    <LogIn update={() => setUpdate(!update)} />
+                </Route>
                 <Route path={[config.web_url]}>
                     <Home />
                 </Route>

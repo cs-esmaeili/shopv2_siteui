@@ -8,6 +8,10 @@ export const LogIn = (data) => {
 export const LogOut = (data) => {
     return http.post(`${config.api_url}logOut`, JSON.stringify(data));
 };
+
+export const _Register = (data) => {
+    return http.post(`${config.api_url}register`, JSON.stringify(data));
+};
 export const CheckToken = () => {
     return http.post(`${config.api_url}checkToken`, {});
 };

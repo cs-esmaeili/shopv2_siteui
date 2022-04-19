@@ -1,6 +1,58 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import config from "./../../config.json";
+import { CheckToken } from '../../services/Authorization';
+import { getCookie, setCookie } from "../../global/cookie";
 
-const Footer = () => {
+const Header = ({ update }) => {
+
+
+    const [check, setCheck] = useState('checking');
+
+
+    const checkToken = async () => {
+        try {
+            const respons = await CheckToken();
+            console.log(respons);
+            if (respons.data.statusText === "ok") {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            return false;
+        }
+    }
+
+    const logOutHandler = async () => {
+        await setCookie(-1, 'token', null);
+        update();
+    };
+
+    useEffect(() => {
+
+        const checkConditions = async () => {
+            if (getCookie('token') === null) {
+                return false;
+            } else if (getCookie('token') !== null) {
+                const checktoken = await checkToken();
+                if (checktoken === true) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        checkConditions().then((reuslt) => {
+            setCheck(reuslt);
+        })
+
+        return () => {
+            setCheck('checking');
+        };
+
+    }, [update]);
+
 
     return (
         <>
@@ -38,9 +90,30 @@ const Footer = () => {
                             <div className="col-12 col-md-4">
                                 <div className="row">
                                     <div className="col-12 col-md-7 col-lg-6 text-center" id="btn-login-register">
-                                        <a href=''>ورود</a>
-                                        /
-                                        <a href="./register.html">عضویت</a>
+                                        {(check === 'checking') &&
+                                            <span >Loading...</span>
+                                        }
+                                        {console.log('check = ' + check)}
+                                        {(check === true) &&
+                                            <div onClick={logOutHandler} style={{ cursor: "pointer" }}>
+                                                خروج
+                                            </div>
+                                        }
+                                        {(check === false) &&
+                                            <>
+                                                <Link
+                                                    to={config.web_url + 'logIn'}
+                                                >
+                                                    ورود
+                                                </Link>
+                                                /
+                                                <Link
+                                                    to={config.web_url + 'register'}
+                                                >
+                                                    عضویت
+                                                </Link>
+                                            </>
+                                        }
                                     </div>
                                     <div className="col-12 col-md-5 col-lg-6">
                                         <a href="./cart.html">
@@ -161,4 +234,4 @@ const Footer = () => {
     )
 }
 
-export default Footer;
+export default Header;
