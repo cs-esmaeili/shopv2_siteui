@@ -6,46 +6,46 @@ const Footer = () => {
         <>
             <section id="header">
                 <div id="top-nav">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-8 d-none d-md-block">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-8 d-none d-md-block">
                                 <ul>
                                     <li><a href="./index.html">صفحه نخست</a></li>
                                     <li><a href="./about.html">درباره ما</a></li>
                                     <li><a href="./contact.html">تماس با ما</a></li>
                                 </ul>
                             </div>
-                            <div class="col-12 col-md-4 text-center text-md-end" id="top-support-info">
+                            <div className="col-12 col-md-4 text-center text-md-end" id="top-support-info">
                                 <span>تلفن مشاوره و فروش: 09351234567</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="search-nav">
-                    <div class="container pt-1">
-                        <div class="row py-3 align-content-center">
-                            <div class="col-12 col-md-3 col-xl-2 text-center text-md-start pb-2" id="header-logo">
+                    <div className="container pt-1">
+                        <div className="row py-3 align-content-center">
+                            <div className="col-12 col-md-3 col-xl-2 text-center text-md-start pb-2" id="header-logo">
                                 <a href="./index.html">
                                     <img src="assets/images/logo.png" alt="" /> روبیک مارکت
                                 </a>
                             </div>
-                            <div class="col-12 col-md-5 col-xl-6">
+                            <div className="col-12 col-md-5 col-xl-6">
                                 <div id="search-bar">
-                                    <i class="fa fa-search"></i>
+                                    <i className="fa fa-search"></i>
                                     <input type="text" placeholder="جستجو کنید..." />
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4">
-                                <div class="row">
-                                    <div class="col-12 col-md-7 col-lg-6 text-center" id="btn-login-register">
+                            <div className="col-12 col-md-4">
+                                <div className="row">
+                                    <div className="col-12 col-md-7 col-lg-6 text-center" id="btn-login-register">
                                         <a href=''>ورود</a>
                                         /
                                         <a href="./register.html">عضویت</a>
                                     </div>
-                                    <div class="col-12 col-md-5 col-lg-6">
+                                    <div className="col-12 col-md-5 col-lg-6">
                                         <a href="./cart.html">
-                                            <div class="btn btn-warning w-100"><i class="fa fa-shopping-cart"></i>&nbsp;<span
-                                                class="d-md-none d-lg-inline-block">سبد خرید</span> (2)</div>
+                                            <div className="btn btn-warning w-100"><i className="fa fa-shopping-cart"></i>&nbsp;<span
+                                                className="d-md-none d-lg-inline-block">سبد خرید</span> (2)</div>
                                         </a>
                                     </div>
                                 </div>
@@ -54,32 +54,32 @@ const Footer = () => {
                     </div>
                 </div>
                 <div id="main-nav">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="droopmenu-navbar dmarrow-down droopmenu-horizontal dmpos-top dmfade">
-                                    <div class="droopmenu-inner">
-                                        <div class="droopmenu-header">
-                                            <a href="#" class="droopmenu-toggle"><i class="dm-burg"></i></a>
-                                            <span class="d-md-none">منوی فروشگاه</span>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12">
+                                <div className="droopmenu-navbar dmarrow-down droopmenu-horizontal dmpos-top dmfade">
+                                    <div className="droopmenu-inner">
+                                        <div className="droopmenu-header">
+                                            <a href="#" className="droopmenu-toggle"><i className="dm-burg"></i></a>
+                                            <span className="d-md-none">منوی فروشگاه</span>
                                         </div>
-                                        <div class="droopmenu-nav">
-                                            <div class="droopmenu-nav-wrap">
-                                                <div class="droopmenu-navi">
-                                                    <ul class="droopmenu">
-                                                        <li class="droopmenu-parent" aria-haspopup="true">
+                                        <div className="droopmenu-nav">
+                                            <div className="droopmenu-nav-wrap">
+                                                <div className="droopmenu-navi">
+                                                    <ul className="droopmenu">
+                                                        <li className="droopmenu-parent" aria-haspopup="true">
                                                             <a href="#" aria-expanded="false"><i
-                                                                class="fa fa-bars"></i>&nbsp;&nbsp;گروه های محصولات<em
-                                                                    class="droopmenu-topanim"></em></a>
-                                                            <div class="dm-arrow"></div>
-                                                            <ul class="droopmenu-grid droopmenu-grid-9">
-                                                                <li class="droopmenu-tabs droopmenu-tabs-vertical">
-                                                                    <div class="droopmenu-tabsection" id="droopmenutab14">
-                                                                        <a class="droopmenu-tabheader" href="#">سلامت و
+                                                                className="fa fa-bars"></i>&nbsp;&nbsp;گروه های محصولات<em
+                                                                    className="droopmenu-topanim"></em></a>
+                                                            <div className="dm-arrow"></div>
+                                                            <ul className="droopmenu-grid droopmenu-grid-9">
+                                                                <li className="droopmenu-tabs droopmenu-tabs-vertical">
+                                                                    <div className="droopmenu-tabsection" id="droopmenutab14">
+                                                                        <a className="droopmenu-tabheader" href="#">سلامت و
                                                                             زیبایی</a>
-                                                                        <div class="droopmenu-tabcontent">
-                                                                            <div class="droopmenu-row">
-                                                                                <ul class="droopmenu-col droopmenu-col4">
+                                                                        <div className="droopmenu-tabcontent">
+                                                                            <div className="droopmenu-row">
+                                                                                <ul className="droopmenu-col droopmenu-col4">
                                                                                     <li>
                                                                                         <h4>محصولات</h4>
                                                                                     </li>
@@ -100,7 +100,7 @@ const Footer = () => {
                                                                                     <li><a href="products.html">سایر محصولات</a>
                                                                                     </li>
                                                                                 </ul>
-                                                                                <ul class="droopmenu-col droopmenu-col4">
+                                                                                <ul className="droopmenu-col droopmenu-col4">
                                                                                     <li>
                                                                                         <h4>برند ها</h4>
                                                                                     </li>
@@ -115,7 +115,7 @@ const Footer = () => {
                                                                                     <li><a href="products.html">آیسان</a></li>
                                                                                 </ul>
                                                                                 <ul
-                                                                                    class="droopmenu-col droopmenu-col4 d-none d-lg-inline-block">
+                                                                                    className="droopmenu-col droopmenu-col4 d-none d-lg-inline-block">
                                                                                     <li><img src="assets/images/megamenu/megamenu-image5.png"
                                                                                         alt="" /></li>
                                                                                 </ul>
@@ -125,19 +125,19 @@ const Footer = () => {
                                                                 </li>
                                                             </ul>
                                                         </li>
-                                                        <li class="droopmenu-parent" aria-haspopup="true">
+                                                        <li className="droopmenu-parent" aria-haspopup="true">
                                                             <a href="./blog.html" aria-expanded="false">بلاگ آموزشی<em
-                                                                class="droopmenu-topanim"></em></a>
-                                                            <div class="dm-arrow"></div>
+                                                                className="droopmenu-topanim"></em></a>
+                                                            <div className="dm-arrow"></div>
                                                             <ul >
                                                                 <li><a href="./blog.html">آرشیو مطالب</a></li>
                                                                 <li><a href="./blog-post.html">داخلی بلاگ</a></li>
                                                             </ul>
                                                         </li>
-                                                        <li class="droopmenu-parent" aria-haspopup="true">
+                                                        <li className="droopmenu-parent" aria-haspopup="true">
                                                             <a href="profile/personal-info.html" aria-expanded="false">پروفایل
-                                                                کاربری<em class="droopmenu-topanim"></em></a>
-                                                            <div class="dm-arrow"></div>
+                                                                کاربری<em className="droopmenu-topanim"></em></a>
+                                                            <div className="dm-arrow"></div>
                                                             <ul >
                                                                 <li><a href="profile/personal-info.html">مشخصات کاربری</a></li>
                                                                 <li><a href="profile/factors.html">سفارشات</a></li>
