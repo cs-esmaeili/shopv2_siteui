@@ -15,7 +15,9 @@ const Home = () => {
                 setData(respons.data.data);
                 console.log(respons.data.data);
             }
-        } catch (error) { }
+        } catch (error) {
+            console.log(error);
+        }
     }
     useEffect(() => {
         getPageData();

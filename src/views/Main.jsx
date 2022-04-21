@@ -6,6 +6,7 @@ import Header from './../views/layouts/Header';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import Register from './pages/Register';
+import Product from './pages/Product';
 
 
 const Main = () => {
@@ -14,6 +15,9 @@ const Main = () => {
         <>
             <Header update={() => setUpdate(!update)} />
             <Switch>
+                <Route path={[config.web_url + 'product']}>
+                    <Product/>
+                </Route>
                 <Route path={[config.web_url + 'register']}>
                     <Register update={() => setUpdate(!update)} />
                 </Route>
