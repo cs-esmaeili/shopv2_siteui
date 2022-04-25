@@ -6,8 +6,13 @@ export const setToken = (token) => {
         await dispatch({ type: "SETTOKEN", payload: token });
     };
 };
-export const setProfileData = (data) => {
+export const setCartData = (data) => {
     return async (dispatch, getState) => {
-        await dispatch({ type: "SETPROFILEDATA", payload: data });
+        await dispatch({ type: "SETPCARTDATA", payload: data });
+    };
+};
+export const setNeedLoadPage = (data) => {
+    return async (dispatch, getState) => {
+        await dispatch({ type: "SETNEEDLOADPAGE", payload: data });
     };
 };

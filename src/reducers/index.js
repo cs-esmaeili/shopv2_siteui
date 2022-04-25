@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { tokenReducer } from "../reducers/profile";
-import { ProfileReducer } from "../reducers/profile";
+import { CartReducer ,tokenReducer , needLoadPageReducer } from "../reducers/profile";
 
 export const reducers = combineReducers({
     token: tokenReducer,
-    profile: ProfileReducer,
+    cart: CartReducer,
+    needLoadPage: needLoadPageReducer,
 });

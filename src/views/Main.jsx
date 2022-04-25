@@ -7,16 +7,25 @@ import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import Register from './pages/Register';
 import Product from './pages/Product';
-
+import Cart from './pages/Cart';
+import { withRouter } from "react-router-dom";
+import Address from './pages/Address';
 
 const Main = () => {
     const [update, setUpdate] = useState(false);
+
     return (
         <>
             <Header update={() => setUpdate(!update)} />
             <Switch>
+                <Route path={[config.web_url + 'address']}>
+                    <Address />
+                </Route>
+                <Route path={[config.web_url + 'cart']}>
+                    <Cart />
+                </Route>
                 <Route path={[config.web_url + 'product']}>
-                    <Product/>
+                    <Product />
                 </Route>
                 <Route path={[config.web_url + 'register']}>
                     <Register update={() => setUpdate(!update)} />
@@ -33,4 +42,4 @@ const Main = () => {
     )
 }
 
-export default Main;
+export default withRouter(Main);;

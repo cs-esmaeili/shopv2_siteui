@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom'
 import { _Product } from './../../services/Pages';
 import { toast } from 'react-toastify';
+import { _AddCart } from './../../services/Actions';
+import { setCartData, setNeedLoadPage } from './../../actions/profile';
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
+import config from "./../../config.json";
 
 const Product = () => {
 
@@ -9,9 +14,12 @@ const Product = () => {
     const [show, setShow] = useState(true);
     const [activeImage, setActiveImage] = useState(0);
     const location = useLocation();
+    const dispatch = useDispatch();
+    const cart = useSelector((state) => state.cart);
+    const token = useSelector((state) => state.token);
 
+    const product_id = location.pathname.substring(location.pathname.lastIndexOf('/') + 1, location.pathname.length);
     const getPageData = async () => {
-        const product_id = location.pathname.substring(location.pathname.lastIndexOf('/') + 1, location.pathname.length);
         try {
             const respons = await _Product({ product_id });
             if (respons.data.statusText === "ok") {
@@ -24,7 +32,33 @@ const Product = () => {
             console.log(error);
         }
     }
-
+    const addCart = async (number) => {
+        try {
+            let obj = data;
+            obj.number = number;
+            const respons = await _AddCart(obj);
+            if (respons.data.statusText === "ok") {
+                let cart_c = [...cart]
+                cart_c.push(obj);
+                dispatch(setCartData(cart_c));
+            }
+            toast(respons.data.message);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const checkCart = () => {
+        if (cart.length > 0) {
+            const result = cart.map((value) => {
+                if (value.product_id === data.product_id) {
+                    return true;
+                }
+                return false;
+            })
+            return result;
+        }
+        return false;
+    }
     useEffect(() => {
         getPageData();
     }, []);
@@ -117,20 +151,38 @@ const Product = () => {
                                             <div className="col-12 col-sm-4 col-lg-3">
                                                 <div className="variable">
                                                     <div className="sub-title pt-2 pb-2">تعداد</div>
-                                                    <input type="number" min="1" max="10" className="form-control" value="1" />
+                                                    <input id='product_number' type="number" min="1" max="10" defaultValue={1} className="form-control" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="cta-container pt-3 pt-md-5">
                                         <div className="row">
-                                            <div className="col-12">
-                                                <a href="./cart.html">
-                                                    <div className="btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket"><i className="fa fa-shopping-cart"></i> افزودن به سبد خرید</div>
-                                                </a>
-                                                <br className="d-sm-none" />
-                                                <div className="btn btn-outline-secondary btn-favorite mt-1 mt-sm-0" data-toggle="tooltip" data-placement="top" title="افزودن به علاقه‌مندی"></div>
-                                            </div>
+                                            {token != null ?
+                                                <div className="col-12">
+                                                    <div className={checkCart() ? "btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket disabled" : "btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket "} onClick={() => {
+                                                        if (checkCart() === false) {
+                                                            let number = document.getElementById('product_number');
+                                                            addCart(number.value);
+                                                        }
+                                                    }}>
+                                                        <i className="fa fa-shopping-cart"></i>
+                                                        {checkCart() ? <span>کالا در سبد خرید وجود دارد</span> : <span>افزودن به سبد خرید</span>}
+                                                    </div>
+
+                                                    <br className="d-sm-none" />
+                                                    <div className="btn btn-outline-secondary btn-favorite mt-1 mt-sm-0" data-toggle="tooltip" data-placement="top" title="افزودن به علاقه‌مندی"></div>
+                                                </div>
+                                                :
+                                                <Link
+                                                    to={config.web_url + 'logIn'}
+                                                    onClick={() => {
+                                                        dispatch(setNeedLoadPage(config.web_url + 'product/' + product_id));
+                                                    }}
+                                                >
+                                                    برای افزدن کالا به سبد خرید وارد حساب کاربری خود شوید
+                                                </Link>
+                                            }
                                         </div>
                                     </div>
                                 </div>

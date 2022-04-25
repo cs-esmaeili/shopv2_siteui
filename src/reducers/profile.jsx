@@ -6,9 +6,17 @@ export const tokenReducer = (state = null, action) => {
             return state;
     }
 };
-export const ProfileReducer = (state = null, action) => {
+export const CartReducer = (state = [], action) => {
     switch (action.type) {
-        case "SETPROFILEDATA":
+        case "SETPCARTDATA":
+            return action.payload;
+        default:
+            return state;
+    }
+};
+export const needLoadPageReducer = (state = null, action) => {
+    switch (action.type) {
+        case "SETNEEDLOADPAGE":
             return action.payload;
         default:
             return state;

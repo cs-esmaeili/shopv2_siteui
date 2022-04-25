@@ -13,7 +13,6 @@ const Home = () => {
             const respons = await _Home();
             if (respons.data.statusText === "ok") {
                 setData(respons.data.data);
-                console.log(respons.data.data);
             }
         } catch (error) {
             console.log(error);

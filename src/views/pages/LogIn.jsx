@@ -5,10 +5,15 @@ import config from "../../config.json";
 import { LogIn } from "../../services/Authorization";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from 'formik';
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { setNeedLoadPage } from './../../actions/profile';
 
 const Login = ({ history, update }) => {
     const [show, setShow] = useState(false);
+    const needLoadPage = useSelector((state) => state.needLoadPage);
+    const dispatch = useDispatch();
+
     const handelSubmit = async ({ username, password }) => {
         const obj = {
             username,
@@ -20,7 +25,12 @@ const Login = ({ history, update }) => {
                 const token = respons.data.token;
                 await setCookie(config.timeOut, 'token', token);
                 axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-                history.replace(config.web_url);
+                if (needLoadPage != null) {
+                    dispatch(setNeedLoadPage(null));
+                    history.replace(needLoadPage);
+                } else {
+                    history.replace(config.web_url);
+                }
                 update();
             } else {
                 setShow(true);
