@@ -67,7 +67,13 @@ const Header = ({ history, update }) => {
                     <div className="row">
                         <div className="col-8 d-none d-md-block">
                             <ul>
-                                <li><a href="./index.html">صفحه نخست</a></li>
+                                <li>
+                                    <Link
+                                        to={config.web_url}
+                                    >
+                                        صفحه نخست
+                                    </Link>
+                                </li>
                                 <li><a href="./about.html">درباره ما</a></li>
                                 <li><a href="./contact.html">تماس با ما</a></li>
                             </ul>
@@ -214,21 +220,68 @@ const Header = ({ history, update }) => {
                                                         </ul>
                                                     </li>
                                                     <li className="droopmenu-parent" aria-haspopup="true">
-                                                        <a href="profile/personal-info.html" aria-expanded="false">پروفایل
-                                                            کاربری<em className="droopmenu-topanim"></em></a>
-                                                        <div className="dm-arrow"></div>
-                                                        <ul >
-                                                            <li><a href="profile/personal-info.html">مشخصات کاربری</a></li>
-                                                            <li><a href="profile/factors.html">سفارشات</a></li>
-                                                            <li>
+                                                        {(check === false) ?
+                                                            <>
                                                                 <Link
-                                                                    to={config.web_url + 'address'}
+                                                                    aria-expanded="false"
+                                                                    to={config.web_url + 'logIn'}
                                                                 >
-                                                                    آدرس ها
+                                                                    پروفایل
+                                                                    کاربری
+                                                                    <em className="droopmenu-topanim"></em>
                                                                 </Link>
-                                                            </li>
-                                                            <li><a href="profile/favorites.html">علاقه مندی ها</a></li>
-                                                        </ul>
+                                                                <div className="dm-arrow"></div>
+                                                                <ul >
+                                                                    <li><a href="profile/personal-info.html">مشخصات کاربری</a></li>
+                                                                    <li><a href="profile/factors.html">سفارشات</a></li>
+                                                                    <li>
+                                                                        <Link
+                                                                            to={config.web_url + 'logIn'}
+                                                                        >
+                                                                            آدرس ها
+                                                                        </Link>
+                                                                    </li>
+                                                                    <li>
+                                                                        <Link
+                                                                            to={config.web_url + 'favorite'}
+                                                                        >
+                                                                            علاقه مندی ها
+                                                                        </Link>
+                                                                    </li>
+                                                                </ul>
+                                                            </>
+                                                            :
+                                                            <>
+                                                                <Link
+                                                                    aria-expanded="false"
+                                                                    to={config.web_url + 'logIn'}
+                                                                >
+                                                                    پروفایل
+                                                                    کاربری
+                                                                    <em className="droopmenu-topanim"></em>
+                                                                </Link>
+                                                                <div className="dm-arrow"></div>
+                                                                <ul >
+                                                                    <li><a href="profile/personal-info.html">مشخصات کاربری</a></li>
+                                                                    <li><a href="profile/factors.html">سفارشات</a></li>
+                                                                    <li>
+                                                                        <Link
+                                                                            to={config.web_url + 'address'}
+                                                                        >
+                                                                            آدرس ها
+                                                                        </Link>
+                                                                    </li>
+                                                                    <li>
+                                                                        <Link
+                                                                            to={config.web_url + 'favorite'}
+                                                                        >
+                                                                            علاقه مندی ها
+                                                                        </Link>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </>
+                                                        }
                                                     </li>
                                                 </ul>
                                             </div>

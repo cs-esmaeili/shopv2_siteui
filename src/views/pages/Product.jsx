@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom'
 import { _Product } from './../../services/Pages';
 import { toast } from 'react-toastify';
-import { _AddCart } from './../../services/Actions';
+import { _AddCart, _AddFavorite } from './../../services/Actions';
 import { setCartData, setNeedLoadPage } from './../../actions/profile';
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
@@ -59,6 +59,15 @@ const Product = () => {
         }
         return false;
     }
+    const addFavorite = async () => {
+        try {
+            const respons = await _AddFavorite({ product_id: data.product_id });
+            toast(respons.data.message);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         getPageData();
     }, []);
@@ -171,7 +180,9 @@ const Product = () => {
                                                     </div>
 
                                                     <br className="d-sm-none" />
-                                                    <div className="btn btn-outline-secondary btn-favorite mt-1 mt-sm-0" data-toggle="tooltip" data-placement="top" title="افزودن به علاقه‌مندی"></div>
+                                                    <div className="btn btn-outline-secondary btn-favorite mt-1 mt-sm-0" data-toggle="tooltip" data-placement="top" title="افزودن به علاقه‌مندی"
+                                                        onClick={() => addFavorite()}
+                                                    ></div>
                                                 </div>
                                                 :
                                                 <Link

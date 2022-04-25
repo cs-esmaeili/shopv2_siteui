@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from 'formik';
 import { _AddAddress, _DeleteAddress, _ListAddress } from "../../services/Actions";
+import AcountRightPanel from "../components/AcountRightPanel";
 import { toast } from 'react-toastify';
 
 const Address = () => {
@@ -78,65 +79,7 @@ const Address = () => {
                         <div className="content">
                             <div className="row">
                                 <div className="col-12 col-lg-3">
-                                    <div className="accordion" id="side-panel">
-                                        <div className="accordion-item menu-container">
-                                            <h2 className="accordion-header">
-                                                <button className="accordion-button bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                                    <span className="row">
-                                                        <span className="col-3 col-sm-2 col-lg-3">
-                                                            <img src="../assets/images/user-no-image.jpg" className="rounded-circle" />
-                                                        </span>
-                                                        <span className="col-7 col-sm-8 col-lg-7 pt-0 pt-sm-2 pt-md-3 pt-lg-0 align-self-center">
-                                                            <div id="full-name">مصطفی کلانتری</div>
-                                                            <div className="mt-2" id="email-mobile">09351234567</div>
-                                                        </span>
-                                                    </span>
-                                                </button>
-                                            </h2>
-                                            <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                                                <div className="accordion-body">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="personal-info.html" className="active">
-                                                                <div>
-                                                                    <div className="icon d-inline-block"><img src="../assets/images/icons/profile-menu/profile.webp" className="pl-2" /></div> اطلاعات حساب
-                                                                </div>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="factors.html">
-                                                                <div>
-                                                                    <div className="icon d-inline-block"><img src="../assets/images/icons/profile-menu/orders.webp" className="pl-2" /></div> سفارش های من
-                                                                </div>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="favorites.html">
-                                                                <div>
-                                                                    <div className="icon d-inline-block"><img src="../assets/images/icons/profile-menu/favorites.webp" className="pl-2" /></div> علاقه مندی ها
-                                                                </div>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="addresses.html">
-                                                                <div>
-                                                                    <div className="icon d-inline-block"><img src="../assets/images/icons/profile-menu/addresses.webp" className="pl-2" /></div> آدرس های من
-                                                                </div>
-                                                            </a>
-                                                        </li>
-                                                        <li><hr /></li>
-                                                        <li>
-                                                            <a href="../index.html">
-                                                                <div>
-                                                                    <div className="icon d-inline-block"><img src="../assets/images/icons/profile-menu/exit.webp" className="pl-2" /></div> خروج از حساب
-                                                                </div>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <AcountRightPanel page="address" />
                                 </div>
                                 <div className="col-12 col-lg-9 pl-lg-0 pr-lg-2 mt-2 mt-lg-0">
                                     <div className="custom-container mb-2" id="new-address">

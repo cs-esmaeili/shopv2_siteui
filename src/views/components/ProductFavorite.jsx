@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import config from "../../config.json";
 
 
-const Product = (data) => {
-    const { images, description, name, price, sale_price, product_id, category } = data.data;
+const ProductFavorite = ({ data, deleteM }) => {
+    const { images, description, name, price, sale_price, product_id, category } = data;
     return (
         <div className="product-box">
             <Link
@@ -36,10 +36,11 @@ const Product = (data) => {
                     <br className="d-sm-none" />
                     <span className="price">{price} تومان</span>
                 </div>
+                <button type="button" className="btn btn-danger" style={{ width: "100%" }} onClick={() => deleteM(product_id)}>حذف</button>
             </div>
         </div >
     )
 }
-export default Product;
+export default ProductFavorite;
 
 

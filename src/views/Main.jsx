@@ -10,6 +10,7 @@ import Product from './pages/Product';
 import Cart from './pages/Cart';
 import { withRouter } from "react-router-dom";
 import Address from './pages/Address';
+import Favorite from './pages/Favorite';
 
 const Main = () => {
     const [update, setUpdate] = useState(false);
@@ -18,6 +19,9 @@ const Main = () => {
         <>
             <Header update={() => setUpdate(!update)} />
             <Switch>
+                <Route path={[config.web_url + 'favorite']}>
+                    <Favorite />
+                </Route>
                 <Route path={[config.web_url + 'address']}>
                     <Address />
                 </Route>
