@@ -39,19 +39,19 @@ const Login = ({ history, update }) => {
         }
     };
     return (
-        <section class="inner-page" id="contact-page">
-            <div class="container-fluid" id="page-hero">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12 px-0">
+        <section className="inner-page" id="contact-page">
+            <div className="container-fluid" id="page-hero">
+                <div className="row">
+                    <div className="col-12">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-12 px-0">
                                     <h1>ورود به ناحیه کاربری</h1>
                                     <p>وارد ناحیه کاربری خود در روبیک مارکت شوید.</p>
                                     <nav aria-label="breadcrumb">
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="./index.html">صفحه نخست</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">ورود</li>
+                                        <ol className="breadcrumb">
+                                            <li className="breadcrumb-item"><a href="./index.html">صفحه نخست</a></li>
+                                            <li className="breadcrumb-item active" aria-current="page">ورود</li>
                                         </ol>
                                     </nav>
                                 </div>

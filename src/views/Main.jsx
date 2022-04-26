@@ -11,22 +11,34 @@ import Cart from './pages/Cart';
 import { withRouter } from "react-router-dom";
 import Address from './pages/Address';
 import Favorite from './pages/Favorite';
+import { useSelector } from 'react-redux';
+import Profile from './pages/Profile';
 
 const Main = () => {
     const [update, setUpdate] = useState(false);
+    const token = useSelector((state) => state.token);
 
+    const check = (component) => {
+        if (token == null) {
+            return (<LogIn update={() => setUpdate(!update)} />);
+        }
+        return (component);
+    }
     return (
         <>
             <Header update={() => setUpdate(!update)} />
             <Switch>
+                <Route path={[config.web_url + 'profile']}>
+                    {check(<Profile />)}
+                </Route>
                 <Route path={[config.web_url + 'favorite']}>
-                    <Favorite />
+                    {check(<Favorite />)}
                 </Route>
                 <Route path={[config.web_url + 'address']}>
-                    <Address />
+                    {check(<Address />)}
                 </Route>
                 <Route path={[config.web_url + 'cart']}>
-                    <Cart />
+                    {check(<Cart />)}
                 </Route>
                 <Route path={[config.web_url + 'product']}>
                     <Product />

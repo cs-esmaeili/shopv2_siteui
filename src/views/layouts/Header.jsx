@@ -254,7 +254,7 @@ const Header = ({ history, update }) => {
                                                             <>
                                                                 <Link
                                                                     aria-expanded="false"
-                                                                    to={config.web_url + 'logIn'}
+                                                                    to={config.web_url + 'profile'}
                                                                 >
                                                                     پروفایل
                                                                     کاربری
@@ -262,7 +262,14 @@ const Header = ({ history, update }) => {
                                                                 </Link>
                                                                 <div className="dm-arrow"></div>
                                                                 <ul >
-                                                                    <li><a href="profile/personal-info.html">مشخصات کاربری</a></li>
+                                                                    <li>
+                                                                        <Link
+                                                                            aria-expanded="false"
+                                                                            to={config.web_url + 'profile'}
+                                                                        >
+                                                                            مشخصات کاربری
+                                                                        </Link>
+                                                                    </li>
                                                                     <li><a href="profile/factors.html">سفارشات</a></li>
                                                                     <li>
                                                                         <Link

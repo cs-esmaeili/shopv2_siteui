@@ -3,7 +3,7 @@ import { _personProfile } from './../../services/Actions';
 import { Link } from 'react-router-dom';
 import config from "./../../config.json";
 
-const AcountRightPanel = ({ page }) => {
+const AcountRightPanel = ({ page, update = null }) => {
 
     const [data, setData] = useState(null);
 
@@ -21,7 +21,7 @@ const AcountRightPanel = ({ page }) => {
 
     useEffect(() => {
         PersonProfile();
-    }, []);
+    }, [update]);
     return (
 
         <div className="accordion" id="side-panel">
@@ -46,8 +46,8 @@ const AcountRightPanel = ({ page }) => {
                         <ul>
                             <li>
                                 <Link
-                                    className={page === '' ? 'active' : ''}
-                                    to={config.web_url + 'address'}
+                                    className={page === 'profile' ? 'active' : ''}
+                                    to={config.web_url + 'profile'}
                                 >
                                     <div>
                                         <div className="icon d-inline-block">

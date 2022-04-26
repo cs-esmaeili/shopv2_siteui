@@ -26,3 +26,7 @@ export const _ListAddress = () => {
 export const _personProfile = () => {
     return http.post(`${config.api_url}personProfile`);
 };
+
+export const _EditPerson = (data) => {
+    return http.post(`${config.api_url}editPerson`,  JSON.stringify(data));
+};
