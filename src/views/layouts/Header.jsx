@@ -6,6 +6,7 @@ import { getCookie, setCookie } from "../../global/cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartData, setToken } from './../../actions/profile';
 import { withRouter } from "react-router-dom";
+import { _ListCart } from "../../services/Actions";
 
 const Header = ({ history, update }) => {
 
@@ -14,6 +15,16 @@ const Header = ({ history, update }) => {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
 
+    const cartList = async () => {
+        try {
+            const respons = await _ListCart();
+            if (respons.data.statusText === "ok") {
+                dispatch(setCartData(respons.data.list));
+            } 
+        } catch (error) {
+            return false;
+        }
+    }
     const checkToken = async () => {
         try {
             const respons = await CheckToken();
@@ -44,6 +55,7 @@ const Header = ({ history, update }) => {
                 const checktoken = await checkToken();
                 if (checktoken === true) {
                     dispatch(setToken(getCookie('token')));
+                    cartList();
                     return true;
                 }
             }
@@ -88,9 +100,11 @@ const Header = ({ history, update }) => {
                 <div className="container pt-1">
                     <div className="row py-3 align-content-center">
                         <div className="col-12 col-md-3 col-xl-2 text-center text-md-start pb-2" id="header-logo">
-                            <a href="./index.html">
+                            <Link
+                                to={config.web_url}
+                            >
                                 <img src="assets/images/logo.png" alt="" /> روبیک مارکت
-                            </a>
+                            </Link>
                         </div>
                         <div className="col-12 col-md-5 col-xl-6">
                             <div id="search-bar">

@@ -12,6 +12,7 @@ const Product = () => {
 
     const [data, setData] = useState(null);
     const [show, setShow] = useState(true);
+    const [check, setCheck] = useState(false);
     const [activeImage, setActiveImage] = useState(0);
     const location = useLocation();
     const dispatch = useDispatch();
@@ -24,7 +25,6 @@ const Product = () => {
             const respons = await _Product({ product_id });
             if (respons.data.statusText === "ok") {
                 setData(respons.data.data);
-                console.log(respons.data.data);
             } else {
                 toast(respons.data.message);
             }
@@ -41,6 +41,7 @@ const Product = () => {
                 let cart_c = [...cart]
                 cart_c.push(obj);
                 dispatch(setCartData(cart_c));
+
             }
             toast(respons.data.message);
         } catch (error) {
@@ -49,15 +50,16 @@ const Product = () => {
     }
     const checkCart = () => {
         if (cart.length > 0) {
-            const result = cart.map((value) => {
-                if (value.product_id === data.product_id) {
-                    return true;
+            cart.map((value) => {
+                if (parseInt(value.product_id) === parseInt(product_id)) {
+                    setCheck(true);
+                } else {
+                    setCheck(false);
                 }
-                return false;
             })
-            return result;
+        } else {
+            setCheck(false);
         }
-        return false;
     }
     const addFavorite = async () => {
         try {
@@ -69,11 +71,16 @@ const Product = () => {
     }
 
     useEffect(() => {
+        checkCart();
         getPageData();
     }, []);
+    useEffect(() => {
+        checkCart();
+    }, [cart]);
 
     return (
         <section className="inner-page" id="product-page">
+            {console.log(check)}
             <div className="container-fluid" id="page-hero">
                 <div className="row">
                     <div className="col-12">
@@ -167,16 +174,20 @@ const Product = () => {
                                     </div>
                                     <div className="cta-container pt-3 pt-md-5">
                                         <div className="row">
-                                            {token != null ?
+                                            {token != null && data != null ?
                                                 <div className="col-12">
-                                                    <div className={checkCart() ? "btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket disabled" : "btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket "} onClick={() => {
-                                                        if (checkCart() === false) {
+                                                    <div className={check ? "btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket disabled" : "btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket "} onClick={() => {
+                                                        if (check === false) {
                                                             let number = document.getElementById('product_number');
                                                             addCart(number.value);
                                                         }
                                                     }}>
                                                         <i className="fa fa-shopping-cart"></i>
-                                                        {checkCart() ? <span>کالا در سبد خرید وجود دارد</span> : <span>افزودن به سبد خرید</span>}
+                                                        {check ?
+                                                            <span>کالا در سبد خرید وجود دارد</span>
+                                                            :
+                                                            <span>افزودن به سبد خرید</span>
+                                                        }
                                                     </div>
 
                                                     <br className="d-sm-none" />

@@ -13,6 +13,7 @@ import Address from './pages/Address';
 import Favorite from './pages/Favorite';
 import { useSelector } from 'react-redux';
 import Profile from './pages/Profile';
+import CheckOut from './pages/CheckOut';
 
 const Main = () => {
     const [update, setUpdate] = useState(false);
@@ -28,6 +29,9 @@ const Main = () => {
         <>
             <Header update={() => setUpdate(!update)} />
             <Switch>
+                <Route path={[config.web_url + 'checkout']}>
+                    {check(<CheckOut />)}
+                </Route>
                 <Route path={[config.web_url + 'profile']}>
                     {check(<Profile />)}
                 </Route>

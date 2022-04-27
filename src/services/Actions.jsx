@@ -2,7 +2,13 @@ import http from "./httpServices";
 import config from "../config.json";
 
 export const _AddCart = (data) => {
-    return http.post(`${config.api_url}add_cart`, JSON.stringify(data));
+    return http.post(`${config.api_url}addCart`, JSON.stringify(data));
+};
+export const _ChangeCartNumber = (data) => {
+    return http.post(`${config.api_url}cartChangeNumber`, JSON.stringify(data));
+};
+export const _DeleteCart = (data) => {
+    return http.post(`${config.api_url}deleteCart`, JSON.stringify(data));
 };
 export const _AddAddress = (data) => {
     return http.post(`${config.api_url}addAddress`, JSON.stringify(data));
@@ -21,6 +27,9 @@ export const _DeleteAddress = (data) => {
 };
 export const _ListAddress = () => {
     return http.post(`${config.api_url}listAddress`);
+};
+export const _ListCart = () => {
+    return http.post(`${config.api_url}listCart`);
 };
 
 export const _personProfile = () => {
