@@ -39,3 +39,6 @@ export const _personProfile = () => {
 export const _EditPerson = (data) => {
     return http.post(`${config.api_url}editPerson`,  JSON.stringify(data));
 };
+export const _Purchase = (data) => {
+    return http.post(`${config.api_url}purchase`,  JSON.stringify(data));
+};
