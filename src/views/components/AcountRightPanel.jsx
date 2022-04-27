@@ -2,10 +2,15 @@ import React, { useState, useEffect } from "react";
 import { _personProfile } from './../../services/Actions';
 import { Link } from 'react-router-dom';
 import config from "./../../config.json";
+import { setCartData, setToken } from './../../actions/profile';
+import { useDispatch, useSelector } from "react-redux";
+import { getCookie, setCookie } from "../../global/cookie";
+import { withRouter } from "react-router-dom";
 
-const AcountRightPanel = ({ page, update = null }) => {
+const AcountRightPanel = ({ history, page, update = null }) => {
 
     const [data, setData] = useState(null);
+    const dispatch = useDispatch();
 
     const PersonProfile = async () => {
         try {
@@ -18,6 +23,13 @@ const AcountRightPanel = ({ page, update = null }) => {
             console.log(error);
         }
     }
+    const logOutHandler = async () => {
+        await setCookie(-1, 'token', null);
+        dispatch(setToken(null));
+        dispatch(setCartData([]));
+        update();
+        history.replace(config.web_url);
+    };
 
     useEffect(() => {
         PersonProfile();
@@ -59,8 +71,8 @@ const AcountRightPanel = ({ page, update = null }) => {
                             </li>
                             <li>
                                 <Link
-                                    className={page === '' ? 'active' : ''}
-                                    to={config.web_url + 'address'}
+                                    className={page === 'factors' ? 'active' : ''}
+                                    to={config.web_url + 'factors'}
                                 >
                                     <div className="icon d-inline-block">
                                         <img src="../assets/images/icons/profile-menu/orders.webp" className="pl-2" />
@@ -97,8 +109,9 @@ const AcountRightPanel = ({ page, update = null }) => {
                             <li><hr /></li>
                             <li>
                                 <Link
-                                    className={page === '' ? 'active' : ''}
-                                    to={config.web_url + 'address'}
+                                    onClick={() => {
+                                        logOutHandler();
+                                    }}
                                 >
                                     <div>
                                         <div className="icon d-inline-block">
@@ -115,6 +128,6 @@ const AcountRightPanel = ({ page, update = null }) => {
         </div>
     )
 }
-export default AcountRightPanel;
+export default withRouter(AcountRightPanel);
 
 

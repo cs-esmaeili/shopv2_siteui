@@ -42,3 +42,6 @@ export const _EditPerson = (data) => {
 export const _Purchase = (data) => {
     return http.post(`${config.api_url}purchase`,  JSON.stringify(data));
 };
+export const _UserFactors = () => {
+    return http.post(`${config.api_url}userFactors`);
+};

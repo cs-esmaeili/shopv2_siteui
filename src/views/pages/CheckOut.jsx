@@ -6,8 +6,9 @@ import config from "./../../config.json";
 import { Link } from 'react-router-dom';
 import { _ListAddress, _Purchase, _ListCart } from './../../services/Actions';
 import { toast } from 'react-toastify';
+import { withRouter } from "react-router-dom";
 
-const CheckOut = () => {
+const CheckOut = ({history}) => {
 
     const [finalPrice, setFinalPrice] = useState(0);
     const [price, setPrice] = useState(0);
@@ -58,6 +59,7 @@ const CheckOut = () => {
             const respons = await _Purchase({ person_address_id: address });
             if (respons.data.statusText === "ok") {
                 cartList();
+                history.replace(config.web_url + 'factors');
             }
             toast(respons.data.message);
 
@@ -233,5 +235,4 @@ const CheckOut = () => {
         </section>
     )
 }
-
-export default CheckOut;
+export default withRouter(CheckOut);
