@@ -1953,7 +1953,15 @@ img {
 .blog-post-box .read-more svg {
   font-size: 10px;
 }
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
 
+/* .dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; 
+} */
 /* /Boxes */
 
 /*# sourceMappingURL=style.css.map */

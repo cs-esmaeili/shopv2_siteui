@@ -7,11 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCartData, setToken } from './../../actions/profile';
 import { withRouter } from "react-router-dom";
 import { _ListCart } from "../../services/Actions";
+import { _CategoryListPyramid } from './../../services/Actions';
 
 const Header = ({ history, update }) => {
 
 
     const [check, setCheck] = useState('checking');
+    const [categoryIndex, setCategoryIndex] = useState(0);
+    const [category, setCategory] = useState(null);
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
 
@@ -20,6 +23,24 @@ const Header = ({ history, update }) => {
             const respons = await _ListCart();
             if (respons.data.statusText === "ok") {
                 dispatch(setCartData(respons.data.list));
+            }
+        } catch (error) {
+            return false;
+        }
+    }
+    const categoryListPyramid = async () => {
+        try {
+            const respons = await _CategoryListPyramid();
+            if (respons.data.statusText === "ok") {
+                let temp = respons.data.list;
+                temp = temp.filter((item) => {
+                    if (Array.isArray(item)) {
+                        return true;
+                    }
+                    return false;
+                })
+                console.log(temp);
+                setCategory(temp);
             }
         } catch (error) {
             return false;
@@ -61,11 +82,10 @@ const Header = ({ history, update }) => {
             }
             return false;
         }
-
         checkConditions().then((reuslt) => {
             setCheck(reuslt);
         })
-
+        categoryListPyramid();
         return () => {
             setCheck('checking');
         };
@@ -167,61 +187,74 @@ const Header = ({ history, update }) => {
                                             <div className="droopmenu-navi">
                                                 <ul className="droopmenu">
                                                     <li className="droopmenu-parent" aria-haspopup="true">
-                                                        <a href="#" aria-expanded="false"><i
-                                                            className="fa fa-bars"></i>&nbsp;&nbsp;گروه های محصولات<em
-                                                                className="droopmenu-topanim"></em></a>
-                                                        <div className="dm-arrow"></div>
-                                                        <ul className="droopmenu-grid droopmenu-grid-9">
-                                                            <li className="droopmenu-tabs droopmenu-tabs-vertical">
-                                                                <div className="droopmenu-tabsection" id="droopmenutab14">
-                                                                    <a className="droopmenu-tabheader" href="#">سلامت و
-                                                                        زیبایی</a>
-                                                                    <div className="droopmenu-tabcontent">
-                                                                        <div className="droopmenu-row">
-                                                                            <ul className="droopmenu-col droopmenu-col4">
-                                                                                <li>
-                                                                                    <h4>محصولات</h4>
-                                                                                </li>
-                                                                                <li><a href="products.html">لوازم آرایشی</a>
-                                                                                </li>
-                                                                                <li><a href="products.html">شامپو</a></li>
-                                                                                <li><a href="products.html">نرم کننده</a>
-                                                                                </li>
-                                                                                <li><a href="products.html">برس و شانه</a>
-                                                                                </li>
-                                                                                <li><a href="products.html">انواع ماسک</a>
-                                                                                </li>
-                                                                                <li><a href="products.html">تقویت کننده
-                                                                                    مو</a></li>
-                                                                                <li><a href="products.html">رنگ مو</a></li>
-                                                                                <li><a href="products.html">دستمال کاغذی</a>
-                                                                                </li>
-                                                                                <li><a href="products.html">سایر محصولات</a>
-                                                                                </li>
-                                                                            </ul>
-                                                                            <ul className="droopmenu-col droopmenu-col4">
-                                                                                <li>
-                                                                                    <h4>برند ها</h4>
-                                                                                </li>
-                                                                                <li><a href="products.html">صحت</a></li>
-                                                                                <li><a href="products.html">پرژک</a></li>
-                                                                                <li><a href="products.html">داروگر</a></li>
-                                                                                <li><a href="products.html">طبیعت</a></li>
-                                                                                <li><a href="products.html">گلرنگ</a></li>
-                                                                                <li><a href="products.html">گلنار</a></li>
-                                                                                <li><a href="products.html">کلیر</a></li>
-                                                                                <li><a href="products.html">شبنم</a></li>
-                                                                                <li><a href="products.html">آیسان</a></li>
-                                                                            </ul>
-                                                                            <ul
-                                                                                className="droopmenu-col droopmenu-col4 d-none d-lg-inline-block">
-                                                                                <li><img src="assets/images/megamenu/megamenu-image5.png"
-                                                                                    alt="" /></li>
-                                                                            </ul>
+                                                        <a href="./contact.html" aria-expanded="false">تماس با فروشگاه<em className="droopmenu-topanim"></em></a><div className="dm-arrow"></div>
+                                                        <ul style={{ width: "50vw", padding: "5px" }}>
+                                                            <div className="row" >
+                                                                <div className="col-2" style={{ borderLeftStyle: "solid", borderLeftWidth: "1px", borderColor: "lightgray" }}>
+                                                                    {category != null &&
+                                                                        category.map((value, index) => {
+                                                                            if (Array.isArray(value)) {
+                                                                                return (
+                                                                                    <li className="mb-2">
+                                                                                        <Link onClick={() => setCategoryIndex(index)} style={{ color: (categoryIndex == index) ? "#fcb941" : "" }}>
+                                                                                            {value[0].name}
+                                                                                        </Link>
+                                                                                    </li>
+                                                                                );
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                </div>
+                                                                <div className="col-6" >
+                                                                    <div className="row">
+                                                                        <div className="col">
+                                                                            {category != null &&
+                                                                                category.map((value1, index) => {
+                                                                                    if (Array.isArray(value1) && index == categoryIndex) {
+                                                                                        let result = value1[1].map((value2, index2) => {
+                                                                                            if (index2 < (value1[1].length / 2)) {
+                                                                                                return (
+                                                                                                    <li className="mb-2">
+                                                                                                        <a href="./faq.html">{value2.name}</a>
+                                                                                                    </li>
+                                                                                                );
+                                                                                            }
+                                                                                            return null;
+                                                                                        })
+                                                                                        return result;
+                                                                                    }
+                                                                                    return null;
+                                                                                })
+                                                                            }
+                                                                        </div>
+                                                                        <div className="col">
+                                                                            {category != null &&
+                                                                                category.map((value1, index) => {
+                                                                                    if (Array.isArray(value1) && index == categoryIndex) {
+                                                                                        let result = value1[1].map((value2, index2) => {
+                                                                                            if (index2 >= (value1[1].length / 2)) {
+                                                                                                return (
+                                                                                                    <li className="mb-2">
+                                                                                                        <a href="./faq.html">{value2.name}</a>
+                                                                                                    </li>
+                                                                                                );
+                                                                                            }
+                                                                                            return null;
+                                                                                        })
+                                                                                        return result;
+                                                                                    }
+                                                                                    return null;
+                                                                                })
+                                                                            }
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </li>
+                                                                <div className="col-4 p-2" style={{ display: "flex", justifyContent: "center", textAlign: "center" }}>
+                                                                    <img src="assets/images/megamenu/megamenu-image1.png" alt="" />
+                                                                </div>
+
+                                                            </div>
+
                                                         </ul>
                                                     </li>
                                                     <li className="droopmenu-parent" aria-haspopup="true">

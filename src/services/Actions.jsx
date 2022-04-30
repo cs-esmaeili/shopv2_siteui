@@ -45,3 +45,6 @@ export const _Purchase = (data) => {
 export const _UserFactors = () => {
     return http.post(`${config.api_url}userFactors`);
 };
+export const _CategoryListPyramid = () => {
+    return http.post(`${config.api_url}categoryListPyramid`);
+};
