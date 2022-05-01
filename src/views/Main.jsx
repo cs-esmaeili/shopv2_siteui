@@ -17,6 +17,7 @@ import CheckOut from './pages/CheckOut';
 import Factors from './pages/Factors';
 import Products from "./pages/Products";
 import Post from './pages/Post';
+import Posts from './pages/Posts';
 
 const Main = () => {
     const [update, setUpdate] = useState(false);
@@ -32,6 +33,9 @@ const Main = () => {
         <>
             <Header update={() => setUpdate(!update)} />
             <Switch>
+                <Route path={[config.web_url + 'posts']}>
+                    <Posts />
+                </Route>
                 <Route path={[config.web_url + 'post']}>
                     <Post />
                 </Route>

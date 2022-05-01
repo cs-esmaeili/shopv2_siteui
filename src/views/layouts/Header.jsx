@@ -39,7 +39,6 @@ const Header = ({ history, update }) => {
                     }
                     return false;
                 })
-                console.log(temp);
                 setCategory(temp);
             }
         } catch (error) {
@@ -186,6 +185,7 @@ const Header = ({ history, update }) => {
                                         <div className="droopmenu-nav-wrap">
                                             <div className="droopmenu-navi">
                                                 <ul className="droopmenu">
+
                                                     <li className="droopmenu-parent" aria-haspopup="true">
                                                         <a href="./contact.html" aria-expanded="false">دسته بندی محصولات<em className="droopmenu-topanim"></em></a><div className="dm-arrow"></div>
                                                         <ul style={{ width: "50vw", padding: "5px" }}>
@@ -263,12 +263,16 @@ const Header = ({ history, update }) => {
                                                         </ul>
                                                     </li>
                                                     <li className="droopmenu-parent" aria-haspopup="true">
-                                                        <a href="./blog.html" aria-expanded="false">بلاگ آموزشی<em
-                                                            className="droopmenu-topanim"></em></a>
+                                                        <Link to={config.web_url + "posts"}>
+                                                            بلاگ آموزشی<em className="droopmenu-topanim"></em>
+                                                        </Link>
                                                         <div className="dm-arrow"></div>
                                                         <ul >
-                                                            <li><a href="./blog.html">آرشیو مطالب</a></li>
-                                                            <li><a href="./blog-post.html">داخلی بلاگ</a></li>
+                                                            <li>
+                                                                <Link to={config.web_url + "posts"}>
+                                                                    آرشیو مطالب
+                                                                </Link>
+                                                            </li>
                                                         </ul>
                                                     </li>
                                                     <li className="droopmenu-parent" aria-haspopup="true">

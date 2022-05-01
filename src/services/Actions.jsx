@@ -57,3 +57,6 @@ export const _post = (data) => {
 export const _lastPosts = () => {
     return http.post(`${config.api_url}lastPosts`);
 };
+export const _posts = () => {
+    return http.post(`${config.api_url}posts`);
+};
