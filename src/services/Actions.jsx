@@ -37,14 +37,17 @@ export const _personProfile = () => {
 };
 
 export const _EditPerson = (data) => {
-    return http.post(`${config.api_url}editPerson`,  JSON.stringify(data));
+    return http.post(`${config.api_url}editPerson`, JSON.stringify(data));
 };
 export const _Purchase = (data) => {
-    return http.post(`${config.api_url}purchase`,  JSON.stringify(data));
+    return http.post(`${config.api_url}purchase`, JSON.stringify(data));
 };
 export const _UserFactors = () => {
     return http.post(`${config.api_url}userFactors`);
 };
 export const _CategoryListPyramid = () => {
     return http.post(`${config.api_url}categoryListPyramid`);
+};
+export const _CategoryProducts = (data) => {
+    return http.post(`${config.api_url}categoryProducts`, JSON.stringify(data));
 };

@@ -32,9 +32,9 @@ const Product = (data) => {
                     <h2>{name}</h2>
                 </Link>
                 <div>
-                    <span className="discounted">{sale_price} تومان</span>
+                    <span className="discounted">{parseInt(price).toLocaleString()} تومان</span>
                     <br className="d-sm-none" />
-                    <span className="price">{price} تومان</span>
+                    <span className="price">  {parseInt(sale_price).toLocaleString()} تومان  </span>
                 </div>
             </div>
         </div >

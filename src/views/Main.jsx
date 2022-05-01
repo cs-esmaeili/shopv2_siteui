@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import Profile from './pages/Profile';
 import CheckOut from './pages/CheckOut';
 import Factors from './pages/Factors';
+import Products from "./pages/Products";
 
 const Main = () => {
     const [update, setUpdate] = useState(false);
@@ -30,6 +31,9 @@ const Main = () => {
         <>
             <Header update={() => setUpdate(!update)} />
             <Switch>
+                <Route path={[config.web_url + 'products']}>
+                    <Products />
+                </Route>
                 <Route path={[config.web_url + 'factors']}>
                     {check(<Factors />)}
                 </Route>
