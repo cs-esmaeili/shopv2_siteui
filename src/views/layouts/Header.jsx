@@ -187,7 +187,7 @@ const Header = ({ history, update }) => {
                                             <div className="droopmenu-navi">
                                                 <ul className="droopmenu">
                                                     <li className="droopmenu-parent" aria-haspopup="true">
-                                                        <a href="./contact.html" aria-expanded="false">تماس با فروشگاه<em className="droopmenu-topanim"></em></a><div className="dm-arrow"></div>
+                                                        <a href="./contact.html" aria-expanded="false">دسته بندی محصولات<em className="droopmenu-topanim"></em></a><div className="dm-arrow"></div>
                                                         <ul style={{ width: "50vw", padding: "5px" }}>
                                                             <div className="row" >
                                                                 <div className="col-2" style={{ borderLeftStyle: "solid", borderLeftWidth: "1px", borderColor: "lightgray" }}>
@@ -215,7 +215,9 @@ const Header = ({ history, update }) => {
                                                                                             if (index2 < (value1[1].length / 2)) {
                                                                                                 return (
                                                                                                     <li className="mb-2">
-                                                                                                        <a href="./faq.html">{value2.name}</a>
+                                                                                                        <Link to={config.web_url + 'products/' + value2.category_id}>
+                                                                                                            {value2.name}
+                                                                                                        </Link>
                                                                                                     </li>
                                                                                                 );
                                                                                             }
@@ -235,7 +237,9 @@ const Header = ({ history, update }) => {
                                                                                             if (index2 >= (value1[1].length / 2)) {
                                                                                                 return (
                                                                                                     <li className="mb-2">
-                                                                                                        <a href="./faq.html">{value2.name}</a>
+                                                                                                        <Link to={config.web_url + 'products/' + value2.category_id}>
+                                                                                                            {value2.name}
+                                                                                                        </Link>
                                                                                                     </li>
                                                                                                 );
                                                                                             }
@@ -250,9 +254,10 @@ const Header = ({ history, update }) => {
                                                                     </div>
                                                                 </div>
                                                                 <div className="col-4 p-2" style={{ display: "flex", justifyContent: "center", textAlign: "center" }}>
-                                                                    <img src="assets/images/megamenu/megamenu-image1.png" alt="" />
+                                                                    {category != null &&
+                                                                        <img src={category[categoryIndex][0].image.image} alt="" />
+                                                                    }
                                                                 </div>
-
                                                             </div>
 
                                                         </ul>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 import { _Product } from './../../services/Pages';
 import { toast } from 'react-toastify';
 import { _AddCart, _AddFavorite } from './../../services/Actions';

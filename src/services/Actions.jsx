@@ -51,3 +51,9 @@ export const _CategoryListPyramid = () => {
 export const _CategoryProducts = (data) => {
     return http.post(`${config.api_url}categoryProducts`, JSON.stringify(data));
 };
+export const _post = (data) => {
+    return http.post(`${config.api_url}post`, JSON.stringify(data));
+};
+export const _lastPosts = () => {
+    return http.post(`${config.api_url}lastPosts`);
+};
