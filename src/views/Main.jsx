@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import React, { useState } from "react";
+import { Switch, Route } from "react-router-dom";
 import config from '../config.json'
 import Footer from './../views/layouts/Footer';
 import Header from './../views/layouts/Header';
@@ -18,6 +18,7 @@ import Factors from './pages/Factors';
 import Products from "./pages/Products";
 import Post from './pages/Post';
 import Posts from './pages/Posts';
+import Search from './pages/Search';
 
 const Main = () => {
     const [update, setUpdate] = useState(false);
@@ -33,6 +34,9 @@ const Main = () => {
         <>
             <Header update={() => setUpdate(!update)} />
             <Switch>
+                <Route path={[config.web_url + 'search']}>
+                    <Search />
+                </Route>
                 <Route path={[config.web_url + 'posts']}>
                     <Posts />
                 </Route>

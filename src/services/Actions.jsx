@@ -60,3 +60,6 @@ export const _lastPosts = () => {
 export const _posts = () => {
     return http.post(`${config.api_url}posts`);
 };
+export const _search = (data) => {
+    return http.post(`${config.api_url}search`, JSON.stringify(data));
+};
