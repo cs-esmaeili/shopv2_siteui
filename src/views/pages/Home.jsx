@@ -162,7 +162,7 @@ const Home = () => {
                                             <div className="row h-100">
                                                 <div className="col-12 col-sm-4 col-lg-5">
                                                     <a href="./product.html"><div className="image h-100"
-                                                        style={{ backgroundImage: `url('${value.image}')` }}
+                                                        style={{ backgroundImage: `url('${value.images[0]}')` }}
                                                     ></div></a>
                                                 </div>
                                                 <div className="col-12 col-sm-8 col-lg-7 py-3">
