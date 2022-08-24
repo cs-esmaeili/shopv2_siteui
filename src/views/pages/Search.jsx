@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
-import { _CategoryProducts, _search } from "../../services/Actions";
+import { _search } from "../../services/Actions";
 import Product from './../components/Product';
 import './css/search.css';
 
-const Search = ({ searched = null }) => {
+const Search = () => {
 
     const [data, setData] = useState(null);
-    const [data_c, setData_c] = useState(null);
+    const [inputText, setInputText] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
     const perPage = 12;
+    const location = useLocation();
+
 
     const getPageData = async (name) => {
         try {
             const respons = await _search({ name });
             if (respons.data.statusText === "ok") {
-                setData_c(respons.data.list);
                 setData(respons.data.list);
             }
         } catch (error) {
@@ -32,8 +33,8 @@ const Search = ({ searched = null }) => {
         for (let index = 0; index < pagesCount; index++) {
             if (index == (tempPage - 2)) {
                 elements.push(
-                    <li class={(index == tempPage) ? "page-item active" : "page-item "}  >
-                        <Link class="page-link">
+                    <li className={(index == tempPage) ? "page-item active" : "page-item "}  >
+                        <Link className="page-link">
                             ...
                         </Link>
                     </li>
@@ -41,8 +42,8 @@ const Search = ({ searched = null }) => {
             }
             if (index == (tempPage - 1)) {
                 elements.push(
-                    <li class={(index == tempPage) ? "page-item active" : "page-item "} >
-                        <Link class="page-link">
+                    <li className={(index == tempPage) ? "page-item active" : "page-item "} >
+                        <Link className="page-link">
                             {index + 1}
                         </Link>
                     </li>
@@ -50,8 +51,8 @@ const Search = ({ searched = null }) => {
             }
             if (index == tempPage) {
                 elements.push(
-                    <li class={(index == tempPage) ? "page-item active" : "page-item "} >
-                        <Link class="page-link">
+                    <li className={(index == tempPage) ? "page-item active" : "page-item "} >
+                        <Link className="page-link">
                             {index + 1}
                         </Link>
                     </li>
@@ -59,8 +60,8 @@ const Search = ({ searched = null }) => {
             }
             if (index == (tempPage + 1)) {
                 elements.push(
-                    <li class={(index == tempPage) ? "page-item active" : "page-item "} >
-                        <Link class="page-link">
+                    <li className={(index == tempPage) ? "page-item active" : "page-item "} >
+                        <Link className="page-link">
                             {index + 1}
                         </Link>
                     </li>
@@ -69,8 +70,8 @@ const Search = ({ searched = null }) => {
             }
             if (index == (tempPage + 2)) {
                 elements.push(
-                    <li class={(index == tempPage) ? "page-item active" : "page-item "} >
-                        <Link class="page-link">
+                    <li className={(index == tempPage) ? "page-item active" : "page-item "} >
+                        <Link className="page-link">
                             ...
                         </Link>
                     </li>
@@ -80,9 +81,9 @@ const Search = ({ searched = null }) => {
         return elements;
     }
     useEffect(() => {
-        if (searched != null) {
-            getPageData(searched);
-        }
+        const searchedText = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
+        setInputText(searchedText);
+        getPageData(searchedText);
     }, []);
     return (
         <section className="inner-page" id="products-page">
@@ -113,12 +114,14 @@ const Search = ({ searched = null }) => {
                             <div className="row">
                                 <div className="col-12">
                                     <div className="container">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                        <div className="input-group mb-3">
+                                            <span className="input-group-text" id="basic-addon1">
+                                                <i className="fa fa-search" aria-hidden="true"></i>
                                             </span>
                                             <input type="text" style={{ direction: "rtl" }}
-                                                class="form-control place-holder-center" placeholder="جستجو کنید..."
+                                                value={inputText}
+                                                onChange={(e) => setInputText(e.target.value)}
+                                                className="form-control place-holder-center" placeholder="جستجو کنید..."
                                                 aria-label="Username" aria-describedby="basic-addon1"
                                                 onKeyDown={(e) => {
                                                     if (e.key === 'Enter') {
@@ -148,10 +151,10 @@ const Search = ({ searched = null }) => {
                                             <div className="col-12">
                                                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center", borderStyle: "solid", borderWidth: "1px", borderColor: "lightgray" }}>
                                                     <nav aria-label="Page navigation example" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                                        <ul class="pagination mb-3 mt-3" >
-                                                            <li class="page-item">
+                                                        <ul className="pagination mb-3 mt-3" >
+                                                            <li className="page-item">
                                                                 <Link
-                                                                    class="page-link"
+                                                                    className="page-link"
                                                                     onClick={() => {
                                                                         if (currentPage - 1 >= 0) {
                                                                             setCurrentPage(currentPage - 1);
@@ -161,9 +164,9 @@ const Search = ({ searched = null }) => {
                                                                 </Link>
                                                             </li>
                                                             {data != null && pagination()}
-                                                            <li class="page-item">
+                                                            <li className="page-item">
                                                                 <Link
-                                                                    class="page-link"
+                                                                    className="page-link"
                                                                     onClick={() => {
                                                                         if (currentPage + 1 < data.length) {
                                                                             setCurrentPage(currentPage + 1);

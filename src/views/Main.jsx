@@ -34,7 +34,7 @@ const Main = () => {
         <>
             <Header update={() => setUpdate(!update)} />
             <Switch>
-                <Route path={[config.web_url + 'search']}>
+                <Route path={config.web_url + 'search/'}>
                     <Search />
                 </Route>
                 <Route path={[config.web_url + 'posts']}>

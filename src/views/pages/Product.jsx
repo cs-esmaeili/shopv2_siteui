@@ -7,10 +7,6 @@ import { setCartData, setNeedLoadPage } from './../../actions/profile';
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import config from "./../../config.json";
-import image1 from "./../../images/products/p100.png"
-import image2 from "./../../images/products/p101.png"
-import image3 from "./../../images/products/p102.png"
-import image4 from "./../../images/products/p103.png"
 const Product = () => {
 
     const [data, setData] = useState(null);

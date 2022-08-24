@@ -11,7 +11,6 @@ import { _CategoryListPyramid } from './../../services/Actions';
 
 const Header = ({ history, update }) => {
 
-
     const [check, setCheck] = useState('checking');
     const [categoryIndex, setCategoryIndex] = useState(0);
     const [category, setCategory] = useState(null);
@@ -128,7 +127,11 @@ const Header = ({ history, update }) => {
                         <div className="col-12 col-md-5 col-xl-6">
                             <div id="search-bar">
                                 <i className="fa fa-search"></i>
-                                <input type="text" placeholder="جستجو کنید..." />
+                                <input type="text" placeholder="جستجو کنید..." onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        history.replace(`${config.web_url}search/${e.target.value}`);
+                                    }
+                                }} />
                             </div>
                         </div>
                         <div className="col-12 col-md-4">

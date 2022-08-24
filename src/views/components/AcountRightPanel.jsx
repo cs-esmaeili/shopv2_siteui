@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { _personProfile } from './../../services/Actions';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, withRouter } from 'react-router-dom';
 import config from "./../../config.json";
 import { setCartData, setToken } from './../../actions/profile';
 import { useDispatch, useSelector } from "react-redux";
 import { getCookie, setCookie } from "../../global/cookie";
-import { withRouter } from "react-router-dom";
 
 const AcountRightPanel = ({ history, page, update = null }) => {
 
     const [data, setData] = useState(null);
     const dispatch = useDispatch();
-
+    const location = useLocation();
+    page = location.pathname;
     const PersonProfile = async () => {
         try {
             const respons = await _personProfile();
@@ -58,7 +58,7 @@ const AcountRightPanel = ({ history, page, update = null }) => {
                         <ul>
                             <li>
                                 <Link
-                                    className={page === 'profile' ? 'active' : ''}
+                                    className={page === '/profile' ? 'active' : ''}
                                     to={config.web_url + 'profile'}
                                 >
                                     <div>
@@ -71,7 +71,7 @@ const AcountRightPanel = ({ history, page, update = null }) => {
                             </li>
                             <li>
                                 <Link
-                                    className={page === 'factors' ? 'active' : ''}
+                                    className={page === '/factors' ? 'active' : ''}
                                     to={config.web_url + 'factors'}
                                 >
                                     <div className="icon d-inline-block">
@@ -82,7 +82,7 @@ const AcountRightPanel = ({ history, page, update = null }) => {
                             </li>
                             <li>
                                 <Link
-                                    className={page === 'favorite' ? 'active' : ''}
+                                    className={page === '/favorite' ? 'active' : ''}
                                     to={config.web_url + 'favorite'}
                                 >
                                     <div>
@@ -95,7 +95,7 @@ const AcountRightPanel = ({ history, page, update = null }) => {
                             </li>
                             <li>
                                 <Link
-                                    className={page === 'address' ? 'active' : ''}
+                                    className={page === '/address' ? 'active' : ''}
                                     to={config.web_url + 'address'}
                                 >
                                     <div>
