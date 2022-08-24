@@ -17,7 +17,6 @@ const Cart = () => {
     const dispatch = useDispatch();
 
     const factor = () => {
-        console.log(cart);
         let price = 0;
         let discount = 0;
         cart.map((value) => {
